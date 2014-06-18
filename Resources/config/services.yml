@@ -1,0 +1,6 @@
+services:
+    word_press_integration:
+        class:      Jaza\WordPressIntegrationBundle\DependencyInjection\WordPressIntegration
+        arguments: [@request, @router, "%wordpress_root%", "%wordpress_base_url%", "%wordpress_is_embedded%"]
+        public:     true
+        scope:      request
