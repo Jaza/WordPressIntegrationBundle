@@ -12,7 +12,7 @@ This bundle lets you render a Symfony2 web app via WordPress.
         "jaza/wordpress-integration-bundle": "1.0.*@dev",
     }
 ``` 
- 
+
 2  Register the bundle in ``app/AppKernel.php``
 
 ``` php
