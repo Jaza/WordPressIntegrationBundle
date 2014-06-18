@@ -1,8 +1,8 @@
 {
-    "name": "jaza/drupal-integration-bundle",
+    "name": "jaza/wordpress-integration-bundle",
     "type": "symfony-bundle",
-    "description": "A Drupal integration bundle for Symfony2.",
-    "keywords": ["drupal", "symfony2", "integration", "bundle"],
+    "description": "A WordPress integration bundle for Symfony2.",
+    "keywords": ["wordpress", "symfony2", "integration", "bundle"],
     "license": "MIT",
     "authors": [
         {
@@ -15,9 +15,9 @@
         "symfony/framework-bundle": "2.*"
     },
     "autoload": {
-        "psr-0": { "Jaza\\DrupalIntegrationBundle": "" }
+        "psr-0": { "Jaza\\WordPressIntegrationBundle": "" }
     },
-    "target-dir": "Jaza/DrupalIntegrationBundle",
+    "target-dir": "Jaza/WordPressIntegrationBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
