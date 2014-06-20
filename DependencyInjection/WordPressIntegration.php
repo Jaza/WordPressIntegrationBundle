@@ -5,6 +5,7 @@ namespace Jaza\WordPressIntegrationBundle\DependencyInjection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class WordPressIntegration
 {
@@ -115,6 +116,29 @@ class WordPressIntegration
         }
         return FALSE;
     }
-    
-    
+
+    /**
+     * Checks that no authenticated WordPress user is tied to the
+     * current session. If one is, deny access for this request.
+     */
+    public function limitAccessToAnonymousUsers()
+    {
+        if (!empty($this->wordpress_user->ID) || !empty($this->wordpress_user->user_login)) {
+            throw new AccessDeniedException('You must be logged out to access this page.');
+        }
+    }
+
+    /**
+     * Checks that an authenticated WordPress user is tied to the
+     * current session. If not, deny access for this request.
+     */
+    public function limitAccessToAuthenticatedUsers()
+    {
+        if (empty($this->wordpress_user->ID)) {
+            throw new AccessDeniedException('You must be logged in to access this page.');
+        }
+        if (empty($this->wordpress_user->user_login)) {
+            throw new AccessDeniedException('Your session must be tied to a username to access this page.');
+        }
+    }
 }
