@@ -55,6 +55,8 @@ class WordPressIntegration
         }
         
         $this->wordpress_user = wp_get_current_user();
+
+        define('WP_SYMFONY_BASEURL', $this->request->getBaseURL());
     }
 
     /**
