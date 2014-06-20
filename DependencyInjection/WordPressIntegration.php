@@ -17,6 +17,8 @@ class WordPressIntegration
     private $wordpress_base_url;
 
     private $wordpress_is_embedded;
+    
+    private $wordpress_user;
 
     public function __construct(Request $request, Router $router, $wordpress_root, $wordpress_base_url, $wordpress_is_embedded)
     {
@@ -50,6 +52,8 @@ class WordPressIntegration
             require_once($this->wordpress_root . '/wp-load.php');
             wp();
         }
+        
+        $this->wordpress_user = wp_get_current_user();
     }
 
     /**
@@ -86,4 +90,31 @@ class WordPressIntegration
 
         return new Response($content);
     }
+    
+    /**
+     * Gets the current logged-in WordPress user object.
+     *
+     * @return
+     *    WordPress user object.
+     */
+    public function getWPUser()
+    {
+        return $this->wordpress_user;
+    }
+    
+    /**
+     * Check if the current logged-in WordPress user is an administrator.
+     *
+     * @return
+     *    Boolean.
+     */
+    public function isAdmin()
+    {
+        if ($this->wordpress_user && in_array('administrator', $this->wordpress_user->roles)) {
+          return TRUE;
+        }
+        return FALSE;
+    }
+    
+    
 }
