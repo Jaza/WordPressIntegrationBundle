@@ -46,9 +46,9 @@ class WordPressIntegration
             throw new \Exception('Missing setting \'wordpress_base_url\' in config');
         }
 
-        define('WP_USE_THEMES', true);
-
         if (!isset($wp_did_header)) {
+            define('WP_USE_THEMES', true);
+
             $wp_did_header = true;
             require_once($this->wordpress_root . '/wp-load.php');
             wp();
